@@ -6,28 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>LeetCode 中等 | Hexo</title>
+  <title>LeetCode 中等 | 多做 多想 少说</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="problem: Given a string s, return the longest palindromic substring in sExample: Input: s &#x3D; &quot;babad&quot;  Output:&quot;bab&quot;  Solution:123456789101112131415161718192021222324252627282930publi">
+<meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode 中等">
 <meta property="og:url" content="http://example.com/2021/10/31/LeetCode-%E4%B8%AD%E7%AD%89/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="多做 多想 少说">
+<meta property="og:description" content="problem: Given a string s, return the longest palindromic substring in sExample: Input: s &#x3D; &quot;babad&quot;  Output:&quot;bab&quot;  Solution:123456789101112131415161718192021222324252627282930publi">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-31T13:58:32.000Z">
-<meta property="article:modified_time" content="2021-10-31T13:58:32.971Z">
+<meta property="article:modified_time" content="2021-11-21T16:08:25.549Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="多做 多想 少说" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="assets/me.jpg">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
   
     #container.show {
-      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+      background: linear-gradient(200deg,#ccc,#000);
     }
   </style>
   
@@ -45,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="assets/me.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/"></a></h1>
@@ -95,7 +97,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="assets/me.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author"></h1>
@@ -154,7 +156,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="problem-Given-a-string-s-return-the-longest-palindromic-substring-in-s"><a href="#problem-Given-a-string-s-return-the-longest-palindromic-substring-in-s" class="headerlink" title="problem: Given a string s, return the longest palindromic substring in s"></a>problem: Given a string s, return the longest palindromic substring in s</h1><pre><code>Example: Input: s = &quot;babad&quot;  Output:&quot;bab&quot;
+</code></pre>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestPalinddrome</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = s.length();</span><br><span class="line">	<span class="keyword">if</span> (len &lt; <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> s;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> maxlen = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> begin = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[len][len];</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">char</span>[] <span class="keyword">char</span> = s.toCharArray();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; len; j++)&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; j; i++ ) &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="keyword">char</span>[i] != <span class="keyword">char</span>[j]) &#123;</span><br><span class="line">				dp[i][j] = <span class="keyword">false</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(j - i &lt; <span class="number">3</span>)&#123;</span><br><span class="line">				dp[i][j] = <span class="keyword">true</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				dp[i][j] = dp[i + <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(dp[i][j] &amp;&amp; j - i + <span class="number">1</span> &gt; maxlen)&#123;</span><br><span class="line">				maxlen = j - i + <span class="number">1</span>；</span><br><span class="line">				begin = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> s.substring(begin,begin + maxlen);</span><br><span class="line"></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="problem-Given-a-string-and-a-dictionary-of-word-dict-determine-if-s-can-be-segmented-into"><a href="#problem-Given-a-string-and-a-dictionary-of-word-dict-determine-if-s-can-be-segmented-into" class="headerlink" title="problem:Given a string and a dictionary of word dict, determine if s can be segmented into"></a>problem:Given a string and a dictionary of word dict, determine if s can be segmented into</h1><p>a space-separated sequence of one or more dictionary words. For example, given s = “leetcode”<br>, dict = [“leet”,”code”]. Return true because “leetcode” can be segmented as “leet code”</p>
+<h2 id="Solution-Word-Break-Dynamic-Programming"><a href="#Solution-Word-Break-Dynamic-Programming" class="headerlink" title="Solution Word Break: Dynamic Programming"></a>Solution Word Break: Dynamic Programming</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordBreak</span><span class="params">(String s, List&lt;String&gt; dict)</span></span>&#123;</span><br><span class="line">	<span class="keyword">boolean</span>[] t = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">	t[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; s.length(); i++ ) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!t[i])</span><br><span class="line">			<span class="keyword">continue</span>; </span><br><span class="line">		<span class="keyword">for</span> (String a : dict) &#123;</span><br><span class="line">			<span class="keyword">int</span> len = a.length();</span><br><span class="line">			<span class="keyword">int</span> end = i + len;</span><br><span class="line">			<span class="keyword">if</span>(end &gt; s.length())</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span>(t[end]) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span>(s.substring(i,end).equals(a))&#123;</span><br><span class="line">				t[end] = <span class="keyword">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> t[s.length()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -463,7 +470,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只是一个个人的记录&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">学会孤独&lt;br&gt;&lt;br&gt;耐住寂寞</div>
   	  	
     	</section>
     
